@@ -1,39 +1,42 @@
-import { View, Text, Button } from 'react-native';
-import { Link, Stack, useNavigation } from 'expo-router';
+import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { Link } from 'expo-router';
 
 export default function Home() {
- const navigation = useNavigation();
-
-  const handHideHeader = () => {
-    navigation.setOptions({headerShown: false});
-  }
-
+ 
   return (
     <View>
-      <Stack.Screen options={{ 
-        title: 'Senai', 
-        headerRight: () => (
-          <Button
-            onPress={() => alert('Olá, Aula de MObile!')}
-            title="Info"
-            color="#000"
-          />
-        ),
-        headerStyle: {
-          backgroundcolor: '#FFD700'
-        },
-        headerTintColor: '#000',
-        headerTitleStyle: {
-          fontWeght: 'bold',
-          fontSize: 30,
-        }
+        <Link href="/about" asChild>
+            <Pressable style={styles.button}>
+                <Text style={styles.buttonText}>Bora para tela Sobre</Text>
+            </Pressable>
+        </Link>
 
-        }}/>
+        <Link href="/(aux)/termos">Termos de uso</Link>
 
-        <Button title="Ocultar Header" onPress= {handHideHeader}></Button>
-
-      <Text>Bem-vindo à tela inicial!</Text>
-      <Link href="/sobre">Ir para Sobre</Link>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+  },
+  title: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      marginBottom: 20
+  },
+  button: {
+      backgroundColor: '#007bff',
+      paddingVertical: 10,
+      paddingHorizontal: 20,
+      borderRadius: 5,
+  },
+  buttonText: {
+      color: 'white',
+      fontSize: 16,
+      textAlign: 'center'
+  }
+});
